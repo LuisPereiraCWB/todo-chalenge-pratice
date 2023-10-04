@@ -1,4 +1,4 @@
-package br.com.luispereira.todolist.controller;
+package br.com.luispereira.todolist.web;
 
 import java.util.List;
 
@@ -13,20 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luispereira.todolist.entity.Todo;
 import br.com.luispereira.todolist.service.TodoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/todos")
 public class TodoController {
 	
+
 	private TodoService todoService;
 		
 	public TodoController(TodoService todoService) {
-		super();
 		this.todoService = todoService;
 	}
 
 	@PostMapping
-	List<Todo> create(@RequestBody Todo todo){
+	List<Todo> create(@RequestBody @Valid Todo todo){
 		return todoService.create(todo);
 	}
 	@GetMapping
